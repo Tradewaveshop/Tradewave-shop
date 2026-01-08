@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tradewave.shop | FLASH SALE ENDING</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+        .animate-pulse-fast { animation: pulse-red 1.5s infinite; }
+        .sticky-btn { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 50; width: 90%; max-width: 400px; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900 pb-24">
+
+    <div class="bg-red-600 text-white text-center py-3 text-sm font-black uppercase tracking-widest animate-pulse">
+        ⚠️ Flash Sale Ends in <span id="timer">14:59</span> Minutes!
+    </div>
+
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-2xl font-black italic tracking-tighter">TRADEWAVE<span class="text-red-600">.</span></div>
+            <a href="https://www.instagram.com/tradewave.shop?igsh=YmFwdXJ5NzhmeGpk" target="_blank" class="text-pink-600 text-2xl"><i class="fab fa-instagram"></i></a>
+        </div>
+    </nav>
+
+    <header class="bg-white py-8 px-4 text-center border-b-4 border-red-600">
+        <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold uppercase mb-4 inline-block">🔥 Trending in India</span>
+        <h1 class="text-4xl md:text-6xl font-black uppercase leading-none mb-2">Don't Overpay.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">Wear Premium.</span></h1>
+        <p class="text-gray-500 font-bold mt-2">Free Delivery. Cash on Delivery. Easy Returns.</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-8 space-y-12">
+        
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-red-100 relative">
+            <div class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 text-xs font-bold rounded uppercase">Save 50% Today</div>
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" class="w-full h-72 object-cover">
+            
+            <div class="p-6">
+                <div class="flex justify-between items-end mb-2">
+                    <h3 class="text-2xl font-black uppercase">Stealth Comfort Sneakers</h3>
+                    <div class="text-right">
+                        <p class="text-gray-400 line-through text-sm font-bold">₹1,599</p>
+                        <p class="text-red-600 text-3xl font-black">₹799</p>
+                    </div>
+                </div>
+
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                    <div class="bg-red-600 h-2.5 rounded-full" style="width: 85%"></div>
+                </div>
+                <p class="text-xs text-red-600 font-bold mb-4">🔥 Only 7 pairs left at this price!</p>
+
+                <p class="text-gray-600 text-sm mb-4 font-medium">Ultra-lightweight mesh. The most comfortable shoe you will ever own. Pay cash when it arrives.</p>
+
+                <button onclick="openModal('Stealth Sneakers')" class="w-full bg-black text-white py-4 rounded-xl font-black text-lg shadow-lg hover:bg-gray-800 transition transform active:scale-95">
+                    ORDER NOW - PAY ON DELIVERY
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-red-100 relative">
+            <div class="absolute top-4 left-4 bg-black text-white px-3 py-1 text-xs font-bold rounded uppercase">Best Seller</div>
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" class="w-full h-72 object-cover">
+            
+            <div class="p-6">
+                <div class="flex justify-between items-end mb-2">
+                    <h3 class="text-2xl font-black uppercase">Premium Cotton Tee</h3>
+                    <div class="text-right">
+                        <p class="text-gray-400 line-through text-sm font-bold">₹999</p>
+                        <p class="text-red-600 text-3xl font-black">₹499</p>
+                    </div>
+                </div>
+
+                <p class="text-xs text-orange-600 font-bold mb-4">⚡ 14 people are viewing this right now</p>
+
+                <p class="text-gray-600 text-sm mb-4 font-medium">100% Cotton. Breathable. No fading. The perfect daily wear t-shirt.</p>
+
+                <button onclick="openModal('Premium Cotton Tee')" class="w-full bg-black text-white py-4 rounded-xl font-black text-lg shadow-lg hover:bg-gray-800 transition transform active:scale-95">
+                    ORDER NOW - PAY ON DELIVERY
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="sticky-btn md:hidden">
+        <a href="#checkoutModal" onclick="document.getElementById('checkoutModal').classList.remove('hidden')" class="block w-full bg-red-600 text-white text-center py-4 rounded-full font-black text-lg shadow-2xl animate-pulse-fast border-4 border-white">
+            BUY NOW ⚡
+        </a>
+    </div>
+
+    <div id="checkoutModal" class="fixed inset-0 bg-black bg-opacity-90 z-[100] hidden flex items-end md:items-center justify-center">
+        <div class="bg-white w-full max-w-md md:rounded-2xl rounded-t-2xl p-6 relative animate-bounce-in">
+            <button onclick="document.getElementById('checkoutModal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400"><i class="fa fa-times text-2xl"></i></button>
+            
+            <h2 class="text-2xl font-black uppercase mb-1">Confirm Order</h2>
+            <p class="text-xs text-gray-500 mb-4">Complete the form below. We will copy your order details so you can paste them in our Instagram DM.</p>
+
+            <form onsubmit="handleInstaOrder(event)" class="space-y-3">
+                <input type="text" id="selectedProduct" readonly class="w-full bg-gray-100 p-3 rounded font-bold text-gray-700">
+                
+                <select id="size" required class="w-full p-4 border-2 border-gray-300 rounded font-bold bg-white focus:border-black">
+                    <option value="">Select Size (Required)</option>
+                    <option>Shoes: 6 UK</option><option>Shoes: 7 UK</option><option>Shoes: 8 UK</option><option>Shoes: 9 UK</option><option>Shoes: 10 UK</option>
+                    <option>Clothes: S</option><option>Clothes: M</option><option>Clothes: L</option><option>Clothes: XL</option>
+                </select>
+
+                <input type="text" id="name" placeholder="Your Name" required class="w-full p-4 border-2 border-gray-300 rounded font-bold">
+                <input type="tel" id="phone" placeholder="Phone Number" required class="w-full p-4 border-2 border-gray-300 rounded font-bold">
+                <textarea id="address" placeholder="Full Address (House, City, Pin)" required rows="2" class="w-full p-4 border-2 border-gray-300 rounded font-bold"></textarea>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-black text-xl shadow-lg mt-2">
+                    <i class="fab fa-instagram"></i> SEND TO INSTAGRAM
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer Logic
+        let time = 15 * 60;
+        setInterval(() => {
+            const min = Math.floor(time / 60);
+            const sec = time % 60;
+            document.getElementById('timer').innerText = `${min}:${sec < 10 ? '0' : ''}${sec}`;
+            if (time > 0) time--;
+        }, 1000);
+
+        function openModal(product) {
+            document.getElementById('selectedProduct').value = product;
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function handleInstaOrder(e) {
+            e.preventDefault();
+            
+            const product = document.getElementById('selectedProduct').value;
+            const size = document.getElementById('size').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+
+            // 1. CREATE THE ORDER MESSAGE
+            const orderText = `NEW ORDER REQUEST:\nProduct: ${product}\nSize: ${size}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n\n(Please confirm my COD order)`;
+
+            // 2. COPY TO CLIPBOARD
+            navigator.clipboard.writeText(orderText).then(() => {
+                alert("✅ Order Details Copied!\n\nWe are redirecting you to Instagram.\n👉 PASTE the message in our DM to confirm.");
+                
+                // 3. OPEN INSTAGRAM DM
+                window.location.href = "https://www.instagram.com/tradewave.shop?igsh=YmFwdXJ5NzhmeGpk"; 
+            });
+        }
+    </script>
+</body>
+</html>
