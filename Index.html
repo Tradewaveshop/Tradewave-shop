@@ -10,76 +10,165 @@
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .animate-pulse-slow { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 pb-20">
+<body class="bg-gray-50 text-gray-900 pb-20 relative">
 
+    <!-- Intro Overlay -->
+    <div id="intro-overlay" class="fixed inset-0 z-[200] bg-white flex items-center justify-center transition-opacity duration-1000 pointer-events-none">
+        <h1 class="text-3xl md:text-5xl font-black tracking-widest uppercase animate-pulse text-center px-4">
+            We sell you quality
+        </h1>
+    </div>
+
+    <!-- Flash Sale Bar -->
     <div class="bg-red-600 text-white text-center py-2 text-xs font-bold uppercase tracking-widest animate-pulse-slow">
         🔥 Flash Sale: 50% OFF + Free Cash on Delivery
     </div>
 
+    <!-- Navigation -->
     <nav class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-black text-blue-900 tracking-tighter italic">TRADEWAVE<span class="text-red-600">.</span></div>
+            <div onclick="showHome()" class="text-2xl font-black text-blue-900 tracking-tighter italic cursor-pointer">
+                TRADEWAVE<span class="text-red-600">.</span>
+            </div>
             <div class="flex space-x-4 text-xs font-bold">
-                <a href="#shoes" class="hover:text-red-600">SHOES</a>
-                <a href="#clothing" class="hover:text-red-600">CLOTHING</a>
+                <button onclick="showCategory('shoes')" class="hover:text-red-600 uppercase">SHOES</button>
+                <button onclick="showCategory('clothing')" class="hover:text-red-600 uppercase">CLOTHING</button>
             </div>
         </div>
     </nav>
 
-    <header class="bg-white py-12 px-6 text-center border-b border-gray-100">
-        <h1 class="text-4xl md:text-5xl font-black leading-none mb-4 uppercase">Everyday Comfort.<br><span class="text-red-600">Honest Prices.</span></h1>
-        <p class="text-gray-600 text-sm max-w-xs mx-auto mb-8">Premium quality gear with Fast Delivery and Cash on Delivery available across India.</p>
-        <div class="flex flex-col gap-3 max-w-xs mx-auto">
-            <a href="#shoes" class="bg-black text-white py-4 rounded-xl font-bold shadow-lg">SHOP SHOES</a>
-            <a href="#clothing" class="bg-gray-200 text-gray-800 py-4 rounded-xl font-bold">SHOP CLOTHING</a>
-        </div>
-    </header>
-
-    <div class="grid grid-cols-3 gap-1 py-6 bg-white border-b border-gray-100">
-        <div class="text-center"><i class="fa fa-truck text-red-600 mb-1"></i><p class="text-[10px] font-bold">FAST SHIP</p></div>
-        <div class="text-center"><i class="fa fa-hand-holding-dollar text-green-600 mb-1"></i><p class="text-[10px] font-bold">CASH ON DEL</p></div>
-        <div class="text-center"><i class="fa fa-shield-check text-blue-600 mb-1"></i><p class="text-[10px] font-bold">100% SAFE</p></div>
-    </div>
-
-    <main class="max-w-4xl mx-auto px-4 mt-10 space-y-12">
+    <!-- Main Content Area -->
+    <main class="min-h-screen">
         
-        <section id="shoes" class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" class="w-full h-64 object-cover" alt="Shoes">
-            <div class="p-6">
-                <h3 class="text-xl font-bold uppercase">Everyday Comfort Shoes</h3>
-                <p class="text-red-600 font-black text-2xl mt-1">₹799 <span class="text-gray-400 line-through text-sm font-normal">₹1,499</span></p>
-                <div class="mt-4 space-y-2 text-sm text-gray-600">
-                    <p>✅ Lightweight & Durable Sole</p>
-                    <p>✅ Breathable Material for Daily Wear</p>
+        <!-- HOME VIEW -->
+        <div id="home-view" class="transition-all duration-500">
+            <header class="bg-white py-12 px-6 text-center border-b border-gray-100">
+                <h1 class="text-4xl md:text-5xl font-black leading-none mb-4 uppercase">Everyday Comfort.<br><span class="text-red-600">Honest Prices.</span></h1>
+                <p class="text-gray-600 text-sm max-w-xs mx-auto mb-8">Premium quality gear with Fast Delivery and Cash on Delivery available across India.</p>
+                <div class="flex flex-col gap-3 max-w-xs mx-auto">
+                    <button onclick="showCategory('shoes')" class="bg-black text-white py-4 rounded-xl font-bold shadow-lg hover:bg-gray-800 transition">SHOP SHOES</button>
+                    <button onclick="showCategory('clothing')" class="bg-gray-200 text-gray-800 py-4 rounded-xl font-bold hover:bg-gray-300 transition">SHOP CLOTHING</button>
                 </div>
-                <button onclick="openCheckout('Everyday Comfort Shoes')" class="w-full mt-6 bg-red-600 text-white py-4 rounded-xl font-black text-lg shadow-lg">ORDER NOW (COD)</button>
-            </div>
-        </section>
+            </header>
 
-        <section id="clothing" class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" class="w-full h-64 object-cover" alt="T-Shirt">
-            <div class="p-6">
-                <h3 class="text-xl font-bold uppercase">Classic Daily Wear Tee</h3>
-                <p class="text-red-600 font-black text-2xl mt-1">₹499 <span class="text-gray-400 line-through text-sm font-normal">₹999</span></p>
-                <div class="mt-4 space-y-2 text-sm text-gray-600">
-                    <p>✅ 100% Premium Cotton</p>
-                    <p>✅ All-Season Breathable Fabric</p>
-                </div>
-                <button onclick="openCheckout('Classic Daily Wear Tee')" class="w-full mt-6 bg-black text-white py-4 rounded-xl font-black text-lg shadow-lg">ORDER NOW (COD)</button>
+            <div class="grid grid-cols-3 gap-1 py-6 bg-white border-b border-gray-100 mb-10">
+                <div class="text-center"><i class="fa fa-truck text-red-600 mb-1"></i><p class="text-[10px] font-bold">FAST SHIP</p></div>
+                <div class="text-center"><i class="fa fa-hand-holding-dollar text-green-600 mb-1"></i><p class="text-[10px] font-bold">CASH ON DEL</p></div>
+                <div class="text-center"><i class="fa fa-shield-check text-blue-600 mb-1"></i><p class="text-[10px] font-bold">100% SAFE</p></div>
             </div>
-        </section>
+        </div>
+
+        <!-- SHOES VIEW -->
+        <div id="shoes-view" class="hidden max-w-4xl mx-auto px-4 py-8 animate-fade-in">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-black uppercase border-b-4 border-red-600 inline-block pb-1">Footwear Collection</h2>
+                <button onclick="showHome()" class="text-xs font-bold bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">BACK TO HOME</button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Shoe 1 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="Shoes">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold uppercase">Everyday Comfort</h3>
+                        <p class="text-red-600 font-black text-xl mt-1">₹799 <span class="text-gray-400 line-through text-sm font-normal">₹1,499</span></p>
+                        <button onclick="openCheckout('Everyday Comfort Shoes')" class="w-full mt-4 bg-red-600 text-white py-3 rounded-lg font-black text-sm shadow-md hover:bg-red-700">ORDER NOW (COD)</button>
+                    </div>
+                </div>
+                <!-- Shoe 2 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="Sneakers">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold uppercase">Sporty Runner</h3>
+                        <p class="text-red-600 font-black text-xl mt-1">₹899 <span class="text-gray-400 line-through text-sm font-normal">₹1,699</span></p>
+                        <button onclick="openCheckout('Sporty Runner Shoes')" class="w-full mt-4 bg-red-600 text-white py-3 rounded-lg font-black text-sm shadow-md hover:bg-red-700">ORDER NOW (COD)</button>
+                    </div>
+                </div>
+                <!-- Shoe 3 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition">
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="Classic">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold uppercase">Classic White Sneakers</h3>
+                        <p class="text-red-600 font-black text-xl mt-1">₹999 <span class="text-gray-400 line-through text-sm font-normal">₹1,999</span></p>
+                        <button onclick="openCheckout('Classic White Sneakers')" class="w-full mt-4 bg-red-600 text-white py-3 rounded-lg font-black text-sm shadow-md hover:bg-red-700">ORDER NOW (COD)</button>
+                    </div>
+                </div>
+                <!-- Shoe 4 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition">
+                    <img src="https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="Loafers">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold uppercase">Urban Loafers</h3>
+                        <p class="text-red-600 font-black text-xl mt-1">₹699 <span class="text-gray-400 line-through text-sm font-normal">₹1,299</span></p>
+                        <button onclick="openCheckout('Urban Loafers')" class="w-full mt-4 bg-red-600 text-white py-3 rounded-lg font-black text-sm shadow-md hover:bg-red-700">ORDER NOW (COD)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLOTHING VIEW -->
+        <div id="clothing-view" class="hidden max-w-4xl mx-auto px-4 py-8 animate-fade-in">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-black uppercase border-b-4 border-red-600 inline-block pb-1">Clothing Collection</h2>
+                <button onclick="showHome()" class="text-xs font-bold bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">BACK TO HOME</button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Cloth 1 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="T-Shirt">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold uppercase">Classic Daily Tee</h3>
+                        <p class="text-red-600 font-black text-xl mt-1">₹499 <span class="text-gray-400 line-through text-sm font-normal">₹999</span></p>
+                        <button onclick="openCheckout('Classic Daily Tee')" class="w-full mt-4 bg-black text-white py-3 rounded-lg font-black text-sm shadow-md hover:bg-gray-800">ORDER NOW (COD)</button>
+                    </div>
+                </div>
+                <!-- Cloth 2 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition">
+                    <img src="https://images.unsplash.com/photo-1523205565295-f8e91625443b?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="Jacket">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold uppercase">Denim Jacket</h3>
+                        <p class="text-red-600 font-black text-xl mt-1">₹1,299 <span class="text-gray-400 line-through text-sm font-normal">₹2,499</span></p>
+                        <button onclick="openCheckout('Denim Jacket')" class="w-full mt-4 bg-black text-white py-3 rounded-lg font-black text-sm shadow-md hover:bg-gray-800">ORDER NOW (COD)</button>
+                    </div>
+                </div>
+                <!-- Cloth 3 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="Hoodie">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold uppercase">Summer Hoodie</h3>
+                        <p class="text-red-600 font-black text-xl mt-1">₹899 <span class="text-gray-400 line-through text-sm font-normal">₹1,599</span></p>
+                        <button onclick="openCheckout('Summer Hoodie')" class="w-full mt-4 bg-black text-white py-3 rounded-lg font-black text-sm shadow-md hover:bg-gray-800">ORDER NOW (COD)</button>
+                    </div>
+                </div>
+                <!-- Cloth 4 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition">
+                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="Shirt">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold uppercase">Casual Shirt</h3>
+                        <p class="text-red-600 font-black text-xl mt-1">₹699 <span class="text-gray-400 line-through text-sm font-normal">₹1,299</span></p>
+                        <button onclick="openCheckout('Casual Shirt')" class="w-full mt-4 bg-black text-white py-3 rounded-lg font-black text-sm shadow-md hover:bg-gray-800">ORDER NOW (COD)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main>
 
+    <!-- Checkout Modal -->
     <div id="checkoutModal" class="fixed inset-0 bg-black bg-opacity-90 z-[100] hidden flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-md rounded-2xl p-6 relative">
-            <button onclick="closeCheckout()" class="absolute top-4 right-4 text-gray-400 text-2xl">&times;</button>
+            <button onclick="closeCheckout()" class="absolute top-4 right-4 text-gray-400 text-2xl hover:text-red-600">&times;</button>
             <h2 class="text-xl font-black uppercase mb-4 text-red-600">Complete Your Order</h2>
             
             <form onsubmit="handleOrder(event)" class="space-y-4">
-                <input type="text" id="p_name" readonly class="w-full bg-gray-100 p-3 rounded font-bold border">
+                <input type="text" id="p_name" readonly class="w-full bg-gray-100 p-3 rounded font-bold border text-gray-700">
                 
                 <select id="p_size" required class="w-full p-3 border-2 border-gray-200 rounded-lg font-bold">
                     <option value="">-- SELECT SIZE --</option>
@@ -95,19 +184,54 @@
                 <input type="tel" id="u_phone" placeholder="WhatsApp Number" required class="w-full p-3 border-2 border-gray-200 rounded-lg">
                 <textarea id="u_address" placeholder="Full Address with Pincode" required rows="2" class="w-full p-3 border-2 border-gray-200 rounded-lg"></textarea>
 
-                <button type="submit" class="w-full bg-green-600 text-white py-4 rounded-xl font-black text-lg flex items-center justify-center gap-2">
+                <button type="submit" class="w-full bg-green-600 text-white py-4 rounded-xl font-black text-lg flex items-center justify-center gap-2 hover:bg-green-700 shadow-lg">
                     <i class="fab fa-whatsapp"></i> CONFIRM VIA WHATSAPP
                 </button>
             </form>
         </div>
     </div>
 
-    <footer class="text-center py-10 text-gray-400 px-4">
+    <footer class="text-center py-10 text-gray-400 px-4 mt-10 border-t border-gray-100">
         <p class="text-xs font-bold mb-2 uppercase">Tradewave.shop</p>
-        <p class="text-[10px]">Contact support within 24 hours for size issues.<br>Cash on Delivery is 100% Secure.</p>
+        <p class="text-[10px] mb-4">Contact support within 24 hours for size issues.<br>Cash on Delivery is 100% Secure.</p>
+        <p class="text-[10px] font-bold text-gray-500">All rights reserved to shiven.shop</p>
     </footer>
 
     <script>
+        // Intro Overlay Logic
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const overlay = document.getElementById('intro-overlay');
+                overlay.classList.add('opacity-0');
+                // Allow interaction with elements behind it once hidden
+                overlay.style.pointerEvents = 'none'; 
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 1000);
+            }, 5000);
+        });
+
+        // Navigation Logic
+        function showHome() {
+            document.getElementById('home-view').classList.remove('hidden');
+            document.getElementById('shoes-view').classList.add('hidden');
+            document.getElementById('clothing-view').classList.add('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showCategory(category) {
+            document.getElementById('home-view').classList.add('hidden');
+            if (category === 'shoes') {
+                document.getElementById('shoes-view').classList.remove('hidden');
+                document.getElementById('clothing-view').classList.add('hidden');
+            } else {
+                document.getElementById('shoes-view').classList.add('hidden');
+                document.getElementById('clothing-view').classList.remove('hidden');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        // Checkout Logic
         function openCheckout(product) {
             document.getElementById('p_name').value = product;
             document.getElementById('checkoutModal').classList.remove('hidden');
@@ -129,7 +253,8 @@
             const address = document.getElementById('u_address').value;
 
             // The Message
-            const msg = `*NEW ORDER - TRADEWAVE*%0A--------------------------%0A*Product:* ${product}%0A*Size:* ${size}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A--------------------------%0A_Sent from Tradewave.shop_`;
+            const instagramLink = "https://www.instagram.com/tradewave.shop?igsh=YmFwdXJ5NzhmeGpk";
+            const msg = `*NEW ORDER - TRADEWAVE*%0A--------------------------%0A*Product:* ${product}%0A*Size:* ${size}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A--------------------------%0A_Sent from Tradewave.shop_%0A%0A*Check us out on Instagram:*%0A${instagramLink}`;
 
             // Redirect to WhatsApp
             window.open(`https://wa.me/${myNum}?text=${msg}`, '_blank');
